@@ -2,35 +2,47 @@ body{
      background-color: darkcyan;
 }
 
-.toggle-icon{
-     width: 50px;
-     position: absolute;
-     top: 50%;
+/* This is the container of the hamburger icon, the true after and
+before  elements (1st and 2nd bars) , but it is not seen. it is invisible.*/
+.hamburger{
+     width: 50px;          /*the width of the icon bar*/
+     position: absolute;              /*the position of the icon*/
+     top: 30%;
      left: 50%;
-     transform: translate(-50%, -50%);
 }
 
-.toggle-icon::after,
-.toggle-icon::before,
-.toggle-icon div{
-     background-color: #fff;
-     border-radius: 3px;
-     content: '';
-     display: block;
-     height: 5px;
-     margin: 7px 0px;
-     transition: .3s;
-}
+/* ************************
+CREATING THE THREE BARS
+************************ */
+.hamburger::before,
+.hamburger::after,
+.hamburger div{
+     height: 10px;           /*the height of the icon bar*/
+     margin: 7px 0px;    /*the distance between the two neighbouring bars*/
 
-.toggle-icon:hover::before{
-     transform: translateY(12px) rotate(135deg);
-}
+     content: '';               /*these two properties are for creating the 1st and 2nd bar*/
+     display: block;       /*without them the after and before bar has no exixtance*/
 
-.toggle-icon:hover::after{
-     transform: translateY(-12px) rotate(-135deg);
+     background-color: white;
+     border-radius: 3px;          /*to make the bars corner-less*/
+     transition: 0.3s;
 }
 
 
-.toggle-icon:hover div{
+/* ************************
+ANIMATING THE THREE BARS
+************************ */
+.hamburger:hover::before{
+     transform: translateY(17px) rotate(135deg);
+     /*here the translateY takes HEIGHT + MARGIN */
+}
+
+.hamburger:hover::after{
+     transform: translateY(-17px) rotate(-135deg);
+     /*here the translateY takes HEIGHT + MARGIN */
+}
+
+.hamburger:hover div{
      transform: scale(0);
+     /*here it is vanished*/
 }
