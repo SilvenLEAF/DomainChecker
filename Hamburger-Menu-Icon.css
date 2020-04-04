@@ -1,0 +1,36 @@
+body{
+     background-color: darkcyan;
+}
+
+.toggle-icon{
+     width: 50px;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+}
+
+.toggle-icon::after,
+.toggle-icon::before,
+.toggle-icon div{
+     background-color: #fff;
+     border-radius: 3px;
+     content: '';
+     display: block;
+     height: 5px;
+     margin: 7px 0px;
+     transition: .3s;
+}
+
+.toggle-icon:hover::before{
+     transform: translateY(12px) rotate(135deg);
+}
+
+.toggle-icon:hover::after{
+     transform: translateY(-12px) rotate(-135deg);
+}
+
+
+.toggle-icon:hover div{
+     transform: scale(0);
+}
