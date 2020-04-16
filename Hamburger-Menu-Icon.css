@@ -17,7 +17,7 @@ CREATING THE THREE BARS
 .hamburger::before,
 .hamburger::after,
 .hamburger div{
-     height: 10px;           /*the height of the icon bar*/
+     height: 5px;           /*the height of the icon bar*/
      margin: 7px 0px;    /*the distance between the two neighbouring bars*/
 
      content: '';               /*these two properties are for creating the 1st and 2nd bar*/
@@ -33,12 +33,12 @@ CREATING THE THREE BARS
 ANIMATING THE THREE BARS
 ************************ */
 .hamburger:hover::before{
-     transform: translateY(17px) rotate(-135deg);
+     transform: translateY(12px) rotate(-135deg);
      /*here the translateY takes HEIGHT + MARGIN */
 }
 
 .hamburger:hover::after{
-     transform: translateY(-17px) rotate(135deg);
+     transform: translateY(-12px) rotate(135deg);
      /*here the translateY takes HEIGHT + MARGIN */
 }
 
