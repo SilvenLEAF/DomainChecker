@@ -33,12 +33,12 @@ CREATING THE THREE BARS
 ANIMATING THE THREE BARS
 ************************ */
 .hamburger:hover::before{
-     transform: translateY(12px) rotate(-135deg);
+     transform: translateY(12px) rotate(135deg);
      /*here the translateY takes HEIGHT + MARGIN */
 }
 
 .hamburger:hover::after{
-     transform: translateY(-12px) rotate(135deg);
+     transform: translateY(-12px) rotate(-135deg);
      /*here the translateY takes HEIGHT + MARGIN */
 }
 
