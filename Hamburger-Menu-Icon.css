@@ -7,8 +7,8 @@ before  elements (1st and 2nd bars) , but it is not seen. it is invisible.*/
 .hamburger{
      width: 50px;          /*the width of the icon bar*/
      position: absolute;              /*the position of the icon*/
-     top: 0%;
-     left: 0%;
+     top: 30%;
+     left: 30%;
 }
 
 /* ************************
@@ -33,12 +33,12 @@ CREATING THE THREE BARS
 ANIMATING THE THREE BARS
 ************************ */
 .hamburger:hover::before{
-     transform: translateY(12px) rotate(135deg);
+     transform: translateY(12px) rotate(-135deg);
      /*here the translateY takes HEIGHT + MARGIN */
 }
 
 .hamburger:hover::after{
-     transform: translateY(-12px) rotate(-135deg);
+     transform: translateY(-12px) rotate(135deg);
      /*here the translateY takes HEIGHT + MARGIN */
 }
 
