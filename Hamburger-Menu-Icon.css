@@ -23,7 +23,7 @@ CREATING THE THREE BARS
      content: '';               /*these two properties are for creating the 1st and 2nd bar*/
      display: block;       /*without them the after and before bar has no exixtance*/
 
-     background-color: orangered;
+     background-color: green;
      border-radius: 3px;          /*to make the bars corner-less*/
      transition: 0.3s;
 }
