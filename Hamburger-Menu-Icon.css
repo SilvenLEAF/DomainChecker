@@ -17,11 +17,11 @@ CREATING THE THREE BARS
 .hamburger::before,
 .hamburger::after,
 .hamburger div{
-     height: 5px;           /*the height of the icon bar*/
-     margin: 7px 0px;    /*the distance between the two neighbouring bars*/
-
      content: '';               /*these two properties are for creating the 1st and 2nd bar*/
      display: block;       /*without them the after and before bar has no exixtance*/
+
+     height: 5px;           /*the height of the icon bar*/
+     margin: 7px 0px;    /*the distance between the two neighbouring bars*/
 
      background-color: white;
      border-radius: 3px;          /*to make the bars corner-less*/
