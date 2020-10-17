@@ -1,0 +1,86 @@
+@import '../variables';
+
+
+.mainProfileIcon {
+  margin: 70px auto 0px auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid $themeColor;
+  box-shadow: $awesomeShadow;
+ 
+}
+
+
+.myProfilePage {
+
+  .myProfileUserName {
+    margin: 0;
+    margin-top: 20px;
+    font-size: 200%;
+    
+  }
+
+  
+  .myProfileTitle {
+    margin: 0;
+    font-size: 150%;    
+  }
+  
+  
+  
+  .myProfileMainHeader {
+    margin-bottom: 40px;
+  }
+
+  
+  
+  
+  
+  
+  .myProfileInfoHolder {
+    margin: 0px;
+    margin-bottom: 40px;
+    
+    .myProfileInfoTitle {      
+      font-size: 120%;
+      font-weight: 600;
+    }
+
+    .myProfileInfoAnswer {      
+      margin-bottom: 10px;
+      font-size: 100%;
+    }
+
+
+  }
+  
+  p.myProfileAbout {
+    text-indent: 50px;
+    text-align: justify;
+  }
+
+  .myProfileAboutHolder {
+    margin-bottom: 40px;
+  }
+
+
+  .myBtnsHolder {
+    margin-top: 20px;    
+
+    button, a.myRedBtn {
+      margin: 25px 0px 0px 25px;   
+    }
+  }
+
+
+  .myProfileBtnsHolder.myBtnsHolder {
+    margin-top: 20px;    
+
+    button, a {
+      width: 191px;
+    }
+  }
+
+
+}

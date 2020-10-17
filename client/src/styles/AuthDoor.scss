@@ -1,0 +1,159 @@
+@import '../variables';
+
+
+
+
+
+/* -------------------------------
+.   MY AUTH DOOR, MY AUTH FORM
+------------------------------- */
+.myAuthDoor, .myAuthForm {
+  margin: 50px auto;
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: $awesomeShadow;
+
+
+  .myAuthAppName {
+    margin: 0;
+    font-size: 150%;
+    text-align: center;
+    font-family: Aladin;
+  }
+
+
+  .myAuthTitle {
+    margin: 0;
+    font-size: 170%;
+    text-align: center;
+    font-family: Dosis, sans-serif;
+    font-weight: 600;
+
+    position: relative;
+    top: -10px;
+  }
+
+  .myAuthFormFooter p {
+    margin: 0px;  
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------
+.         MY AUTH DOOR
+------------------------------- */
+.myAuthDoor {
+  margin: 50px auto;
+
+
+  
+  $oauthDividinHRandORcolor: rgba($color: #000000, $alpha: 0.5);
+  .myOauthDividingOR {
+    margin: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 120%;
+    font-family: Dosis;
+    font-weight: 600;
+    color: $oauthDividinHRandORcolor;
+  }
+
+  .myOauthDividingHR {
+    margin: 0;
+    border-bottom: .5px solid $oauthDividinHRandORcolor;
+
+    position: relative;
+    top: -25px;
+
+  }
+  
+
+
+
+
+
+
+  .myOauthButtonsHolder {
+    margin: 0px auto 20px auto;
+    
+    
+    .myOauthBtn {
+      margin-bottom: 10px;
+      padding: 7px;
+      padding-left: 50px;
+      
+      
+      font-size: 90%;
+
+      color: $bodyBG;
+      text-shadow: $awesomeShadow;
+      box-shadow: $awesomeShadow;
+
+      cursor: pointer;
+
+
+      i{
+        margin-right: 7px;
+        font-size: 130%;
+      }
+
+    }
+
+
+
+
+    .myLocalAuth {
+       background-color: $themeColor; 
+    }
+    
+    .myDemoAuth {
+       background-color: $demoLoginBG ; 
+    }
+
+    .myOauthGoogle {
+       background-color: orangered; 
+    }
+    .myOauthLinkedin {
+      background-color:  #0e76a8 ; 
+    }
+    .myOauthGithub {
+       background-color: #211F1F; 
+    }    
+    .myOauthTwitter {
+       background-color: #00acee; 
+       display: none;
+    }    
+    .myOauthInstagram {
+      background-color: #c32aa3; 
+      display: none;
+    }
+    .myOauthFacebook {
+      background-color: #4267B2; 
+      display: none;
+    }    
+    
+  }
+
+}

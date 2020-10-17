@@ -1,0 +1,65 @@
+@import '../variables';
+
+
+#myLandingIcon {
+  margin: 50px auto;
+  float: right;
+  // width: 250px;
+  // height: 250px;
+  width: 475px;
+  height: 270px;
+  // border-radius: 50%;
+  font-size: 230% !important;
+  background: $landingIcon;
+
+
+  @include mQ(800px){
+    float: none;
+    width: 275px;
+    height: 150px;
+  }
+
+}
+
+
+
+.myLandingContentHolder {
+  margin: 0;
+  margin-top: 100px;
+  position: relative;
+  top: 70px;
+
+  @include mQ(800px){
+    margin-top: 0;
+    top: 0;
+  }
+}
+
+
+
+
+
+
+.myLandingDescription {
+  margin: 0;
+  font-size: 120%;
+}
+
+
+.myLandingBtnHolder {
+  margin: 50px 0px;  
+  font-size: 120%;
+  text-align: center;
+  
+  .btn.myLandingBtn {
+    margin: 0;
+
+    padding: 0px 30px;
+    border-radius: 30px;
+    font-size: 120%;
+
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+  }
+}
