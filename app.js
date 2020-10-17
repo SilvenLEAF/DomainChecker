@@ -10,7 +10,8 @@ if(process.env.NODE.ENV !== `production`){
 
 const express = require('express');
 const path = require('path');
-
+const passport = require('passport');
+const cookieSession = require('cookie-session');
 
 
 
@@ -36,6 +37,26 @@ app.use(express.static(path.join(__dirname, `client/build`)));
 
 
 
+// ------------------------ COOKIE AND PASSPORT
+app.use(cookieSession({
+  maxAge: 24*60*60*1000,
+  keys: [`orehasaikyounizettainaru`],
+}));
+
+
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
+
+
+
+
+
 
 
 
@@ -46,7 +67,7 @@ app.use(express.static(path.join(__dirname, `client/build`)));
 .                   config
 ------------------------------------------- */
 require('./config/mongodbConfig');
-
+require('./config/passportConfig');
 
 
 
@@ -58,7 +79,7 @@ require('./config/mongodbConfig');
 /* -------------------------------------------
 .                   routes
 ------------------------------------------- */
-
+app.use(require('./routes/authRoutes'));
 
 
 // CATCH ALL HANDLER
