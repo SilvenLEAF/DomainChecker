@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-if(process.env.NODE.ENV !== `production`){
+if(process.env.NODE_ENV !== `production`){
   // if in DEVELOPMENT, require environment variables
   require('dotenv').config();
 }
@@ -26,6 +26,7 @@ const cookieSession = require('cookie-session');
 
 // ---------------------------FIRING EXPRESS APP
 const app = express();
+app.use(express.json());
 app.use(express.static(path.join(__dirname, `client/build`)));
 
 
@@ -80,6 +81,7 @@ require('./config/passportConfig');
 .                   routes
 ------------------------------------------- */
 app.use(require('./routes/authRoutes'));
+app.use(require('./routes/DnsRoute'));
 
 
 // CATCH ALL HANDLER

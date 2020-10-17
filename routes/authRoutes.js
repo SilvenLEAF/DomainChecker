@@ -81,7 +81,7 @@ router.post('/login', (req, res, next)=>{
 /* ------------------------------------------
 .                 GOOGLE
 ------------------------------------------ */
-rotuer.get('/auth/google', passport.authenticate('google', {
+router.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email']
 }));
 
