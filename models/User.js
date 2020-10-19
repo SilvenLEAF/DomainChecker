@@ -113,6 +113,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: `A Human Being`,
   },
+  location: {
+    type: String,
+    default: `Somewhere on Earth`,
+  },
   careerStatus: String,
   workingAt: String,
   
