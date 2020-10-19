@@ -6,7 +6,11 @@ const userController = require('../controllers/userController');
 
 // ---------------------GET LOGGED IN USER
 router.get('/', (req, res, next)=>{  
-  res.json(req.user)
+  if(req.user){
+    res.json({ user: req.user })
+  } else {
+    res.json({ msg: `Not logged in` })
+  }
 })
 
 

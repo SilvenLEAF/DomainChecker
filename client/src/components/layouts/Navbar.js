@@ -27,8 +27,8 @@ function Navbar() {
 
   const { userData, setUserData } = useContext(AuthContext)
 
-  const mobileLink = userData.user ? <SignedInMobileLinks setUserData={ setUserData } /> : <SignedOutMobileLinks/>;
-  const pcLink = userData.user ? <SignedInPCLinks setUserData={ setUserData } /> : <SignedOutPCLinks/>;
+  const mobileLink = userData ? <SignedInMobileLinks setUserData={ setUserData } /> : <SignedOutMobileLinks/>;
+  const pcLink = userData ? <SignedInPCLinks setUserData={ setUserData } /> : <SignedOutPCLinks/>;
 
 
 
@@ -61,7 +61,7 @@ function Navbar() {
 
           <li style={{marginLeft: '20px'}}>
             {
-              userData.user && (
+              userData && (
               <Link to="/profile" className="btn-floating center pulse myProfileNavIcon">
                 ZG
                 { /*userData.userName[0]*/ }
@@ -78,7 +78,7 @@ function Navbar() {
         <ul className="right hide-on-large-only">
           <li>
             {
-              /*userData._id */ userData.user && (
+              userData && (
                 <Link to="/profile" className="btn-floating center pulse myProfileNavIcon">
                   ZG
                   { /*userData.userName[0] */ }

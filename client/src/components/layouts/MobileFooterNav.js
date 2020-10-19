@@ -21,7 +21,7 @@ function MobileFooterNav() {
 
   const { userData } = useContext(AuthContext)
 
-  const link = userData.user  ? <SignedInFooterLinks/> : <SignedOutFooterLinks/> ;
+  const link = userData ? <SignedInFooterLinks/> : <SignedOutFooterLinks/> ;
   return (
     <div id="myMobileFooterNav" className="container hide-on-large-only">
       { link }

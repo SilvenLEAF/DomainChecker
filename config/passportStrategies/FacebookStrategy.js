@@ -11,7 +11,7 @@ const User = require('../../models/User');
 
 module.exports = FacebookStrategy = new Strategy(
   {
-    clientID: process.env.FACEBOK_CLIENT_ID,
+    clientID: process.env.FACEBOOK_CLIENT_ID,
     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     callback: '/auth/facebook/callback'
   },

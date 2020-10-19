@@ -3,9 +3,14 @@ import '../../styles/UserList.scss'
 
 import React, { useEffect, useContext, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
+import { usePaginatedQuery } from 'react-query'
+
+
+
+
 
 import { AuthContext } from '../../contexts/subContexts/AuthContext'
-// import { AllUsersContext } from '../../contexts/subContexts/AllUsersContext'
+import { AllUserContext } from '../../contexts/subContexts/AllUserContext'
 
 
 
@@ -14,6 +19,16 @@ import UserListItem from './UserListItem'
 
 
 
+
+const getAllUsers = async ()=>{
+  
+
+  const allUserRes = await fetch('http://localhost:5000/user/all');
+  const allUserData = await allUserRes.json();
+
+  console.log(allUserData);
+  return allUserData
+}
 
 
 
@@ -29,10 +44,14 @@ function UserList() {
 
 
   const { userData, setUserData } = useContext(AuthContext)
-  // const { allUsers, setAllUsers } = useContext(AllUsersContext)
-  const [allUsers, setAllUsers] = useState([1,2,3,4,5,6,7,8,9])
+  const { allUsers, setAllUsers } = useContext(AllUserContext)
+  // const [allUsers, setAllUsers] = useState([1,2,3,4,5,6,7,8,9])
   const history = useHistory()
   
+
+
+  const { resolvedData, latestData, status } = usePaginatedQuery("allusers", getAllUsers)
+  if(resolvedData) setAllUsers(resolvedData);
 
 
 
@@ -50,7 +69,7 @@ function UserList() {
           allUsers[0] && allUsers.map((item, index)=>{
             return (
               <Link to={ "/userProfile/" + index } key={ index } >
-                <UserListItem/>
+                <UserListItem item={ item } />
               </Link>
             )
           })

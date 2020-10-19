@@ -8,6 +8,10 @@ const mongoose = require('mongoose');
 /* ----------------------------------
 .           SUB SCHEMAs
 ---------------------------------- */
+
+
+
+
 const GoogleSchema = new mongoose.Schema({
   googleId: String,
   email: String,
@@ -86,6 +90,9 @@ const UserSchema = new mongoose.Schema({
   google: GoogleSchema,
   github: GithubSchema,
   facebook: FacebookSchema,
+  
+
+  local: LocalSchema,
 
 
 

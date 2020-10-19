@@ -3,7 +3,7 @@
 const Strategy = require('passport-local');
 const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
-const LoginStrategy = require('../../../Soul2.0/config/passportStrategies/LoginStrategy');
+
 
 
 

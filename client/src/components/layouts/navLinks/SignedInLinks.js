@@ -16,10 +16,9 @@ export const SignedInMobileLinks = ({ setUserData }) => {
   const history = useHistory();
 
 
-  const handleLogout = ()=>{
-    setUserData({
-      user: undefined,
-    });
+  const handleLogout = async ()=>{
+    await fetch('http://localhost:5000/logout')
+    setUserData(undefined);
     history.push('/')
   }
 

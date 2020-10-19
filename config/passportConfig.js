@@ -1,17 +1,17 @@
 const passport = require('passport');
-const User = require('../../Soul2.0/models/User');
+const User = require('../models/User');
 
 
 
 
-const LoginStrategy = require('../../Soul2.0/config/passportStrategies/LoginStrategy');
-const SignupStrategy = require('../../Soul2.0/config/passportStrategies/SignupStrategy');
+const LoginStrategy = require('./passportStrategies/LoginStrategy');
+const SignupStrategy = require('./passportStrategies/SignupStrategy');
 
 
 
-const FacebookStrategy = require('../../Soul2.0/config/passportStrategies/FacebookStrategy');
-const GithubStrategy = require('../../Soul2.0/config/passportStrategies/GithubStrategy');
-const GoogleStrategy = require('../../Soul2.0/config/passportStrategies/GoogleStrategy');
+const FacebookStrategy = require('./passportStrategies/FacebookStrategy');
+const GithubStrategy = require('./passportStrategies/GithubStrategy');
+const GoogleStrategy = require('./passportStrategies/GoogleStrategy');
 
 
 

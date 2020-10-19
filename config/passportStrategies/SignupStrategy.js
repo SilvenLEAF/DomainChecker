@@ -1,6 +1,6 @@
 
 
-const Strategy = require('pasport-local');
+const Strategy = require('passport-local');
 const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
 
@@ -21,6 +21,7 @@ module.exports = SignupStategy = new Strategy(
 
   (req, email, password, done)=>{
     const { username, profileImage } = req.body;
+    console.log(req.body);
 
 
     User.findOne({ 'local.email': email }, (err, user)=>{
@@ -41,7 +42,7 @@ module.exports = SignupStategy = new Strategy(
         'local.email': email,
         'local.password': bcrypt.hashSync(password, bcrypt.genSaltSync()),
         createdAt: new Date(),
-        userrname,
+        username,
         profileImage,
 
       }).then(newUser=> done(null, newUser))

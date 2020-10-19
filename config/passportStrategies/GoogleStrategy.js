@@ -42,7 +42,7 @@ module.exports = GoogleStrategy = new Strategy(
 
         'google.username': profile.displayName,
         'google.profileImage': profile.photos[0].value,
-      }).then(newUser=> don(null, newUser));
+      }).then(newUser=> done(null, newUser));
 
 
 

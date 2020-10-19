@@ -30,7 +30,7 @@ router.post('/signup', (req, res, next)=>{
 
     req.logIn(user, (err)=>{
       if(err) return res.status(500).json({ msg: `Oops, something went wrong`, error: err.message });
-      
+    
       return res.json(user);
     })
     

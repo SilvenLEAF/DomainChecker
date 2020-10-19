@@ -80,7 +80,7 @@ require('./config/passportConfig');
 /* -------------------------------------------
 .                   routes
 ------------------------------------------- */
-app.use(require('./routes/authRoutes'));
+app.use(require('./routes/authRoute'));
 app.use(require('./routes/DnsRoute'));
 app.use('/user', require('./routes/userRoute'))
 

@@ -20,7 +20,7 @@ function Search() {
       <form className="myDefaultForm">
         <div className="myInputHolder">
           <label htmlFor="domainName">Your Domain Name <span className="red-text">(Required)</span></label>
-          <div>            
+          <div>
             <i className="myPrefix material-icons">memory</i>
             <input type="text" required />
           </div>

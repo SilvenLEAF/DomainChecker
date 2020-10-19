@@ -49,9 +49,9 @@ function Login() {
           
           
           
-          <div className="myOauthBtn myOauthGoogle">
+          <a href="http://localhost:5000/auth/google" className="myOauthBtn myOauthGoogle">
             <i className="fa fa-google"></i> Continue with Google
-          </div>
+          </a>
           
           
           
@@ -63,9 +63,9 @@ function Login() {
           
           
           
-          <div className="myOauthBtn myOauthGithub">
+          <a href="http://localhost:5000/auth/github" className="myOauthBtn myOauthGithub">
             <i className="fa fa-github"></i> Continue with Github
-          </div>
+          </a>
           
           
           
@@ -83,9 +83,9 @@ function Login() {
                             
           
           
-          <div className="myOauthBtn myOauthFacebook">
+          <a href="http://localhost:5000/auth/facebook" className="myOauthBtn myOauthFacebook">
             <i className="fa fa-facebook"></i> Continue with Facebook
-          </div>
+          </a>
           
           
           
