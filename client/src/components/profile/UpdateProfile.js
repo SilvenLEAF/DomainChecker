@@ -3,7 +3,7 @@ import '../../styles/Profile.scss'
 import '../../styles/UpdateProfile.scss'
 
 
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 
 
@@ -22,6 +22,11 @@ function UpdateProfile() {
   const history = useHistory();
 
   
+  const [username, setUsername] = useState('');
+  const [title, setTitle] = useState('')
+  const [location, setLocation] = useState('');
+  const [about, setAbout] = useState('')
+  const [careerStatus, setCareerStatus] = useState('');
 
   
 
