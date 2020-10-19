@@ -47,7 +47,8 @@ module.exports.delete_account = async (req, res, next)=>{
 ------------------------------------ */
 module.exports.update_profile = async (req, res, next)=>{
   try {
-    await User.findByIdAndUpdate(req.user._id, req.body);
+    const { userId } = req.body;
+    await User.findByIdAndUpdate(userId, req.body);
     const updatedUser = await User.findById(req.user._id);
 
 
