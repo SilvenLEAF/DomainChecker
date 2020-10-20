@@ -60,7 +60,7 @@ function LogInForm() {
     console.log(loggedInUserData); 
     
     if(loggedInUserData.user){
-      setUserData(loggedInUserData);
+      setUserData(loggedInUserData.user);
     }
     history.push('/');
 
