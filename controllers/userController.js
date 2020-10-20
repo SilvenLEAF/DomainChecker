@@ -49,7 +49,7 @@ module.exports.update_profile = async (req, res, next)=>{
   try {
     const { userId } = req.body;
     await User.findByIdAndUpdate(userId, req.body);
-    const updatedUser = await User.findById(req.user._id);
+    const updatedUser = await User.findById(userId);
 
 
     res.json(updatedUser);

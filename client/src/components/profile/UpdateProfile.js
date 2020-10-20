@@ -18,19 +18,65 @@ function UpdateProfile() {
   }, [])
   
   
-  const { userData } = useContext(AuthContext);
+  const { userData, setUserData } = useContext(AuthContext);
   const history = useHistory();
 
   
   const [username, setUsername] = useState('');
+  const [profileImage, setProfileImage] = useState('');
+
   const [title, setTitle] = useState('')
   const [location, setLocation] = useState('');
   const [about, setAbout] = useState('')
-  const [careerStatus, setCareerStatus] = useState('');
 
+  const [careerStatus, setCareerStatus] = useState('');
+  const [workingAt, setWorkingAt] = useState('');
+
+  const [websiteLink, setWebsiteLink] = useState('');
+  const [twitterHandle, setTwitterHandle] = useState('');
+
+
+
+
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+
+    const updateObj = {};
+    updateObj.userId = userData._id;
+
+    if(username) updateObj.username = username;
+    if(profileImage) updateObj.profileImage = profileImage;
+
+    if(location) updateObj.location = location;
+    if(title) updateObj.title = title;
+    if(about) updateObj.about = about;
+
+    if(careerStatus) updateObj.careerStatus = careerStatus;
+    if(workingAt) updateObj.workingAt = workingAt;
+    if(websiteLink) updateObj.websiteLink = websiteLink;
+    if(twitterHandle) updateObj.twitterHandle = twitterHandle;
+    
+
+    console.log('update started');
+
+
+    const res = await fetch('http://localhost:5000/user', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updateObj)
+    })
+
+
+    const data = await res.json();
+    setUserData(data);
+    history.push('/profile')
+  }
   
 
-  // if(!userData._id) history.push('/login')
+  if(!userData) history.push('/login')
 
   return (
     <div id="myUpdateProfilePage" className="container myProfilePage">      
@@ -39,121 +85,121 @@ function UpdateProfile() {
       <div className="myProfileMainHeader">
         <div className="myProfileUserName">SilvenLEAF SilvenLEAF</div>
         <div className="myProfileTitle" >Fullstack Developer</div>
-        <div className="myProfileLocation red-text"> Mt View, California, USA </div>
+        <div className="myProfileLocation red-text"> All fields are OPTIONAL </div>
       </div>
 
 
 
-      <div className="row">
-        
+      <form className="row" onSubmit={ handleSubmit } >
+          
 
-      <div className="myProfileInfoHolder col s12 m6">
-        <div>
-          <div className="myProfileInfoTitle">
-            <i className="fa fa-address-card-o"></i> Username 
+        <div className="myProfileInfoHolder col s12 m6">
+          <div>
+            <div className="myProfileInfoTitle">
+              <i className="fa fa-address-card-o"></i> Username 
+            </div>
+            <div className="myProfileInfoAnswer">
+              <input type="text" placeholder={ userData.username} value={username} onChange={ e=> setUsername(e.target.value) } />
+            </div>
           </div>
-          <div className="myProfileInfoAnswer">
-            <input type="text" placeholder="SilvenLEAF SilvenLEAF" />
+          
+          
+          
+          
+          
+          <div>
+            <div className="myProfileInfoTitle">
+              <i className="fa fa-cogs"></i> is a/an 
+            </div>
+            <div className="myProfileInfoAnswer">
+              <input type="text" placeholder={ userData.title} value={title} onChange={ e=> setTitle(e.target.value) } />
+            </div>
           </div>
-        </div>
-        
-        
-        
-        
-        
-        <div>
-          <div className="myProfileInfoTitle">
-            <i className="fa fa-cogs"></i> is a/an 
+
+
+
+
+
+
+          <div>
+            <div className="myProfileInfoTitle">
+              <i className="fa fa-home"></i> Lives in 
+            </div>
+            <div className="myProfileInfoAnswer">
+              <input type="text" placeholder={ userData.location} value={location} onChange={ e=> setLocation(e.target.value) } />
+            </div>
           </div>
-          <div className="myProfileInfoAnswer">
-            <input type="text" placeholder="Fullstack Developer" />
+
+
+
+
+          <div>
+            <div className="myProfileInfoTitle">
+              <i className="fa fa-medkit"></i> Working at
+            </div>
+            <div className="myProfileInfoAnswer">
+              <input type="text" placeholder={ userData.workingAt} value={workingAt} onChange={ e=> setWorkingAt(e.target.value) } />
+            </div>
           </div>
-        </div>
 
 
 
 
-
-
-        <div>
-          <div className="myProfileInfoTitle">
-            <i className="fa fa-home"></i> Lives in 
+          <div>
+            <div className="myProfileInfoTitle">
+              <i className="fa fa-graduation-cap"></i> Career status
+            </div>
+            <div className="myProfileInfoAnswer">
+              <input type="text" placeholder={ userData.careerStatus} value={careerStatus} onChange={ e=> setCareerStatus(e.target.value) } />
+            </div>
           </div>
-          <div className="myProfileInfoAnswer">
-            <input type="text" placeholder="Mt View, California, USA" />
+
+
+
+
+
+
+          <div>
+            <div className="myProfileInfoTitle">
+              <i className="fa fa-share-alt"></i> Website link
+            </div>
+            <div className="myProfileInfoAnswer">
+              <input type="text" placeholder={ userData.websiteLink} value={websiteLink} onChange={ e=> setWebsiteLink(e.target.value) } />
+            </div>
           </div>
-        </div>
 
 
 
 
-        <div>
-          <div className="myProfileInfoTitle">
-            <i className="fa fa-medkit"></i> Working at
+
+          <div>
+            <div className="myProfileInfoTitle">
+              <i className="fa fa-twitter"></i> Connect on Twitter
+            </div>
+            <div className="myProfileInfoAnswer">
+              <input type="text" placeholder={ userData.twitterHandle} value={twitterHandle} onChange={ e=> setTwitterHandle(e.target.value) } />
+            </div>
           </div>
-          <div className="myProfileInfoAnswer">
-            <input type="text" placeholder="home due to coronavirus" />
-          </div>
-        </div>
 
 
-
-
-        <div>
-          <div className="myProfileInfoTitle">
-            <i className="fa fa-graduation-cap"></i> Career status
-          </div>
-          <div className="myProfileInfoAnswer">
-            <input type="text" placeholder="Fullstack Developer at SilvenLEAF ORG" />
-          </div>
-        </div>
-
-
-
-
-
-
-        <div>
-          <div className="myProfileInfoTitle">
-            <i className="fa fa-share-alt"></i> Website link
-          </div>
-          <div className="myProfileInfoAnswer">
-            <input type="text" placeholder="silvenleaf.github.io" />
-          </div>
-        </div>
-
-
-
-
-
-        <div>
-          <div className="myProfileInfoTitle">
-            <i className="fa fa-twitter"></i> Connect on Twitter
-          </div>
-          <div className="myProfileInfoAnswer">
-            <input type="text" placeholder="@SilvenLEAF" />
-          </div>
-        </div>
-
-
-      </div>
-
-
-     <div className="col s12 m5 offset-m1">     
-        <div className="myUpdateProfileAbout Holder">
-          <textarea name="about" className="myUpdateProfileAbout"
-            placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque necessitatibus consectetur laborum odio distinctio aut. Alias, eos neque. Odit itaque exercitationem aut neque. Amet dolorum iusto autem aliquid eius, eaque voluptate ullam atque dignissimos eum accusantium praesentium accusamus pariatur nesciunt asperiores odit? Maxime temporibus, ullam dicta beatae blanditiis hic adipisci."
-          ></textarea>  
         </div>
 
-        <div className="myBtnsHolder right-align">
-          <button className="btn myBtn waves-effect waves-light"><i className="fa fa-edit"></i> Update</button>
-          <Link to="/profile" className="btn myRedBtn waves-effect waves-light"><i className="fa fa-remove"></i> Cancel</Link>
+
+        <div className="col s12 m5 offset-m1">     
+            <div className="myUpdateProfileAbout Holder">
+              <textarea name="about" className="myUpdateProfileAbout"
+                placeholder={ userData.about} value={about} onChange={ e=> setAbout(e.target.value) }
+              ></textarea>  
+            </div>
+
+            <div className="myBtnsHolder right-align">
+              <button className="btn myBtn waves-effect waves-light"><i className="fa fa-edit"></i> Update</button>
+              <Link to="/profile" className="btn myRedBtn waves-effect waves-light"><i className="fa fa-remove"></i> Cancel</Link>
+            </div>
         </div>
-     </div>
 
 
-      </div>
+      </form>
 
 
 
