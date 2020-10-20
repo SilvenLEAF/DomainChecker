@@ -24,6 +24,8 @@ function SignUpForm() {
   const [password, setPassword] = useState('');
   
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const [gender, setGender]= useState('male');
   const [error, setError] = useState('');
 
 
@@ -33,13 +35,48 @@ function SignUpForm() {
 
     const newUser = {};
     if(username) newUser.username = username;
-    if(email) newUser.email = email;
-    
-    if(password !== confirmPassword) return setError(`Type the password twice for confirmation`);
-    
+    if(email) newUser.email = email;    
+    if(password !== confirmPassword) return setError(`Type the password twice for confirmation`);    
     if(password) newUser.password = password;
 
-    newUser.profileImage = '/Logo.png'
+
+
+
+
+    
+    const femaleIcons = [
+      'userFemaleBlue',
+      'userFemaleGreen',
+      'userFemaleOrange',
+      'userFemalePink',
+      'userFemalePurple',
+      'userFemaleRed',
+      'userFemaleTheme',
+      'userFemaleYellow',
+    ]
+    
+    const maleIcons = [
+      'userMaleBlue',
+      'userMaleGreen',
+      'userMaleOrange',
+      'userMalePink',
+      'userMalePurple',
+      'userMaleRed',
+      'userMaleTheme',
+      'userMaleYellow',
+    ]
+
+    const n = Math.floor(Math.random() * maleIcons.length);
+
+    newUser.profileImage = `/images/users/${ (gender === 'male') ?  maleIcons[n] : femaleIcons[n] }.png`
+
+
+
+
+
+
+
+
     
 
 
@@ -69,6 +106,8 @@ function SignUpForm() {
     if(loggedInUserData.user){
       setUserData(loggedInUserData.user);
     }
+
+
     history.push('/');
 
   }
@@ -118,6 +157,33 @@ function SignUpForm() {
           <input type="password" autoComplete="off" value={ confirmPassword } onChange={ e=> setConfirmPassword(e.target.value) } required />
           <label htmlFor="confirmPassword">Confirm Password <span className="red-text">(Required)</span> </label>
         </div>
+        
+        
+        
+        
+        <div className="input-field">
+          <p>
+          
+            <label style={{ marginRight: "50px" }} >
+              <input type="radio" id="maleRadio" className="with-gap" name="gender" onChange={ e=> setGender('male') } />
+              <span>I'm Male</span>
+            </label>
+          
+          
+          
+            <label >
+              <input type="radio" id="femaleRadio" className="with-gap" name="gender" onChange={ e=> setGender('female') } />
+              <span>I'm Female</span>
+            </label>
+          
+          </p>        
+          
+          
+         
+        </div>
+
+
+
 
         <p className="myAgreeTermsAndConditions">
           By signing up you confirm that you've read and agreed our <a href="#">User Notice</a> and <a href="#">Privacy Policy</a>
