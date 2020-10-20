@@ -27,8 +27,8 @@ function SignedInFooterLinks() {
 
       <div>
         <div className="myFooterIcons">
-          <Link to="/allUsers" >
-          <i className="fa fa-users"></i> All Users
+          <Link to="/search" >
+          <i className="material-icons">memory</i> DNS Check
           </Link>
         </div>          
       </div>
@@ -37,8 +37,8 @@ function SignedInFooterLinks() {
 
       <div>
         <div className="myFooterIcons">
-          <Link to="/contact" >
-          <i className="fa fa-envelope"></i> Contact
+          <Link to="/profile" >
+          <i className="fa fa-user"></i> Profile
           </Link>
         </div>          
       </div>

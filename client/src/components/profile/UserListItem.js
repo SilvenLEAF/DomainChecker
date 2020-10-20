@@ -1,16 +1,16 @@
 import React from 'react'
 
-function UserListItem() {
+function UserListItem({ item }) {
   return (
     <li>
-    <div className="myUserProfileIcon" style={{background: `url(/Logo.png) center/cover` }}></div>
+    <div className="myUserProfileIcon" style={{background: `url(${ item.profileImage || "/Logo.png" }) center/cover` }}></div>
     <div>
       <div className="myUserName">
-        SilvenLEAF SilvenLEAF
+        {item.username}
       </div>
 
       <p className="grey-text">
-        Fullstack Developer
+        {item.title}
       </p>
     </div>
 

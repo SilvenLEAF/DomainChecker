@@ -62,9 +62,8 @@ function Navbar() {
           <li style={{marginLeft: '20px'}}>
             {
               userData && (
-              <Link to="/profile" className="btn-floating center pulse myProfileNavIcon">
-                ZG
-                { /*userData.userName[0]*/ }
+              <Link to="/profile" className="btn-floating center pulse myProfileNavIcon">             
+                { userData && userData.username[0] }
               </Link>
               )
             }
@@ -80,8 +79,7 @@ function Navbar() {
             {
               userData && (
                 <Link to="/profile" className="btn-floating center pulse myProfileNavIcon">
-                  ZG
-                  { /*userData.userName[0] */ }
+                  { userData && userData.username[0] }
                 </Link>
                 )
               }
