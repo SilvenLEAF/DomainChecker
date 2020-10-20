@@ -3,7 +3,7 @@ import '../../styles/AuthDoor.scss'
 
 
 import React, { useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 
 
