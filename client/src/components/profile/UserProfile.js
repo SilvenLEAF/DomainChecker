@@ -29,7 +29,7 @@ function UserProfile(props) {
 
   
 
-  // if(!userData._id) history.push('/login')
+  if(!userData) history.push('/login')
 
   return (
     <div className="container myProfilePage">      

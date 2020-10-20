@@ -74,7 +74,7 @@ function SignUpForm() {
   }
 
 
-
+  if(userData) history.push('/')
 
   return (
     <div className="container myAuthForm" >

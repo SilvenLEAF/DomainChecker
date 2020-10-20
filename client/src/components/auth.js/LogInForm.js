@@ -67,7 +67,7 @@ function LogInForm() {
   }
 
 
-
+  if(userData) history.push('/');
 
 
   return (

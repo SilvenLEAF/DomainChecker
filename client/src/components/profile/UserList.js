@@ -45,7 +45,6 @@ function UserList() {
 
   const { userData, setUserData } = useContext(AuthContext)
   const { allUsers, setAllUsers } = useContext(AllUserContext)
-  // const [allUsers, setAllUsers] = useState([1,2,3,4,5,6,7,8,9])
   const history = useHistory()
   
 
@@ -57,7 +56,7 @@ function UserList() {
 
 
 
-  // if(!userData._id) history.push('/login')
+  if(!userData) history.push('/login')
 
   return (
     <div className="container myUserListPage">

@@ -2,13 +2,30 @@ import M from 'materialize-css'
 import '../../styles/AuthDoor.scss'
 
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
+
+
+
+import { AuthContext } from '../../contexts/subContexts/AuthContext'
+
+
+
+
+
 
 function Login() {
   useEffect(()=>{
     M.AutoInit();
   })
+
+
+
+  const { userData } = useContext(AuthContext);
+  const history = useHistory();
+
+
+  if(userData) history.push('/')
 
 
 
