@@ -180,6 +180,19 @@ function UpdateProfile() {
               <input type="text" placeholder={ userData.twitterHandle} value={twitterHandle} onChange={ e=> setTwitterHandle(e.target.value) } />
             </div>
           </div>
+          
+          
+          
+          
+          
+          <div>
+            <div className="myProfileInfoTitle">
+              <i className="fa fa-picture-o"></i> Profile image URL
+            </div>
+            <div className="myProfileInfoAnswer">
+              <input type="text" placeholder="give a dropbox link" value={profileImage} onChange={ e=> setProfileImage(e.target.value) } />
+            </div>
+          </div>
 
 
         </div>
