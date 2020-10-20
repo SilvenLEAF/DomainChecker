@@ -8,12 +8,13 @@ import { BrowserRouter } from 'react-router-dom';
 
 import RootAppStucture from './PAGES/RootAppStructure';
 import RootContext from './contexts/RootContext';
+import { AuthContext } from './contexts/subContexts/AuthContext';
 
 
 
 
 function App() {
-  const [loggedInUserData, setLoggedInUserData] = useState();
+  const [userData, setUserData] = useState();
   
 
   useEffect(()=>{
@@ -24,7 +25,7 @@ function App() {
       console.log(data);
       
       if(data.user) {
-        setLoggedInUserData(data.user);
+        setUserData(data.user);
         
       }
     }
@@ -38,9 +39,11 @@ function App() {
 
   return (
     <BrowserRouter basename="/">
-      <RootContext loggedInUserData={ loggedInUserData } >
-        <div className="App"><RootAppStucture/></div>
-      </RootContext>
+      <AuthContext.Provider value={{ userData, setUserData }} >
+        <RootContext >
+          <div className="App"><RootAppStucture/></div>
+        </RootContext>
+      </AuthContext.Provider>
     </BrowserRouter>
   );
 }

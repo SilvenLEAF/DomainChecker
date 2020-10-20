@@ -16,10 +16,10 @@ export const SignedInMobileLinks = ({ setUserData }) => {
   const history = useHistory();
 
 
-  const handleLogout = async ()=>{
-    await fetch('http://localhost:5000/logout')
-    setUserData(undefined);
-    history.push('/')
+  const handleLogout = ()=>{
+    console.log('started log out')
+    
+    window.location.href = 'http://localhost:5000/logout'
   }
 
 
