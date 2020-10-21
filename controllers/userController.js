@@ -27,9 +27,11 @@ module.exports.get_all_users = async (req, res, next)=>{
 module.exports.delete_account = async (req, res, next)=>{
   try {
     const { userId } = req.body;
-
+    if(userId == `5f8fd2e762466a0017906793`) return res.redirect('/logout');
+    
     const deletedUser = await User.findByIdAndDelete(userId);
     res.json(deletedUser)
+
   } catch (err) {
     next(err, req, res)
   }
