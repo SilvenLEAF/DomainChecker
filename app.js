@@ -1,9 +1,10 @@
 const chalk = require('chalk');
+require('dotenv').config();
 
-if(process.env.NODE_ENV !== `production`){
-  // if in DEVELOPMENT, require environment variables
-  require('dotenv').config();
-}
+// if(process.env.NODE_ENV !== `production`){
+//   // if in DEVELOPMENT, require environment variables
+//   require('dotenv').config();
+// }
 
 
 
