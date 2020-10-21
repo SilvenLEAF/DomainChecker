@@ -112,7 +112,7 @@ function UserProfile(props) {
           </div>
           <div className="myProfileInfoAnswer">
           { item.websiteLink ? (
-            <a href={ item.websiteLink } target="_blank">
+            <a href={ (item.websiteLink.search('http://') === -1) ? 'https://' + item.websiteLink : item.websiteLink } target="_blank" rel="noopener noreferrer" >
               { item.websiteLink }
             </a>
           ) : (
