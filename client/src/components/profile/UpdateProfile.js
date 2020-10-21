@@ -61,7 +61,7 @@ function UpdateProfile() {
     console.log('update started');
 
 
-    const res = await fetch('http://localhost:5000/user', {
+    const res = await fetch('/user', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

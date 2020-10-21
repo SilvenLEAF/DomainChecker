@@ -21,7 +21,7 @@ function Search() {
   const handleSubmit = async (e) =>{
     e.preventDefault();
 
-    const res = await fetch('http://localhost:5000/getIpAddress', {
+    const res = await fetch('/getIpAddress', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

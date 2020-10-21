@@ -80,7 +80,7 @@ function SignUpForm() {
     
 
 
-    const signupRes = await fetch('http://localhost:5000/signup', {
+    const signupRes = await fetch('/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ function SignUpForm() {
 
 
 
-    const loggedInUserRes = await fetch('http://localhost:5000/user');
+    const loggedInUserRes = await fetch('/user');
     const loggedInUserData = await loggedInUserRes.json();
 
     console.log(loggedInUserData); 

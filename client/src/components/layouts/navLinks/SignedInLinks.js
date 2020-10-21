@@ -19,7 +19,7 @@ export const SignedInMobileLinks = ({ setUserData }) => {
   const handleLogout = ()=>{
     console.log('started log out')
     
-    window.location.href = 'http://localhost:5000/logout'
+    window.location.href = '/logout'
   }
 
 

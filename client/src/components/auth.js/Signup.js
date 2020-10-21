@@ -39,7 +39,7 @@ function Signup() {
     
 
 
-    const loginRes = await fetch('http://localhost:5000/login', {
+    const loginRes = await fetch('/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ function Signup() {
 
 
 
-    const loggedInUserRes = await fetch('http://localhost:5000/user');
+    const loggedInUserRes = await fetch('/user');
     const loggedInUserData = await loggedInUserRes.json();
 
     console.log(loggedInUserData); 
@@ -123,7 +123,7 @@ function Signup() {
           
           
           
-          <a href="http://localhost:5000/auth/google" className="myOauthBtn myOauthGoogle">
+          <a href="/auth/google" className="myOauthBtn myOauthGoogle">
             <i className="fa fa-google"></i> Continue with Google
           </a>
           
@@ -137,7 +137,7 @@ function Signup() {
           
           
           
-          <a href="http://localhost:5000/auth/github" className="myOauthBtn myOauthGithub">
+          <a href="/auth/github" className="myOauthBtn myOauthGithub">
             <i className="fa fa-github"></i> Continue with Github
           </a>
           
@@ -157,7 +157,7 @@ function Signup() {
                             
           
           
-          <a href="http://localhost:5000/auth/facebook" className="myOauthBtn myOauthFacebook">
+          <a href="/auth/facebook" className="myOauthBtn myOauthFacebook">
             <i className="fa fa-facebook"></i> Continue with Facebook
           </a>
           

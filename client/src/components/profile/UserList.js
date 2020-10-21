@@ -23,7 +23,7 @@ import UserListItem from './UserListItem'
 const getAllUsers = async ()=>{
   
 
-  const allUserRes = await fetch('http://localhost:5000/user/all');
+  const allUserRes = await fetch('/user/all');
   const allUserData = await allUserRes.json();
 
   console.log(allUserData);

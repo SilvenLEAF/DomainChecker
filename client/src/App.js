@@ -19,7 +19,7 @@ function App() {
 
   useEffect(()=>{
     const getLoggedInUser = async (e) =>{
-      const res = await fetch('http://localhost:5000/user');
+      const res = await fetch('/user');
       const data = await res.json();
       
       console.log(data);

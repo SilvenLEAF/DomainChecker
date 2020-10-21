@@ -36,7 +36,7 @@ function LogInForm() {
     
 
 
-    const loginRes = await fetch('http://localhost:5000/login', {
+    const loginRes = await fetch('/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ function LogInForm() {
 
 
 
-    const loggedInUserRes = await fetch('http://localhost:5000/user');
+    const loggedInUserRes = await fetch('/user');
     const loggedInUserData = await loggedInUserRes.json();
 
     console.log(loggedInUserData); 
