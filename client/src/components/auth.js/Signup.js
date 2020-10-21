@@ -22,8 +22,58 @@ function Signup() {
 
 
   
-  const { userData } = useContext(AuthContext);
+  const { userData, setUserData } = useContext(AuthContext);
   const history = useHistory();
+
+
+
+  const demoLogin = async (e)=>{
+    e.preventDefault();
+    console.log('started demo login')
+
+    const demoUser = { email: `demo@gmail.com`, password: `123456Aa` };
+    
+    
+    
+
+    
+
+
+    const loginRes = await fetch('http://localhost:5000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(demoUser)
+    });
+    const loginData = await loginRes.json();
+
+    console.log(loginData)
+
+
+
+
+    setUserData(loginData)
+
+
+
+    const loggedInUserRes = await fetch('http://localhost:5000/user');
+    const loggedInUserData = await loggedInUserRes.json();
+
+    console.log(loggedInUserData); 
+    
+    if(loggedInUserData.user){
+      setUserData(loggedInUserData.user);
+    }
+    history.push('/');
+
+  }
+
+
+
+
+
+
 
 
   if(userData) history.push('/')
@@ -58,7 +108,7 @@ function Signup() {
 
 
 
-          <div className="myOauthBtn myDemoAuth">
+          <div className="myOauthBtn myDemoAuth" onClick={ demoLogin } >
             <i className="fa fa-key"></i> Log in for DEMO
           </div>
 

@@ -104,6 +104,7 @@
       margin-bottom: 10px;
       padding: 7px;
       padding-left: 50px;
+      border-radius: 30px;
       
       
       font-size: 90%;
@@ -130,7 +131,8 @@
     }
     
     .myDemoAuth {
-       background-color: $demoLoginBG ; 
+      color: #333; 
+      background-color: $demoLoginBG ; 
     }
 
     .myOauthGoogle {

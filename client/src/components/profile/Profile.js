@@ -26,14 +26,14 @@ function Profile() {
   const deleteProfile = async (e) =>{
     e.preventDefault();
 
-    const requestedUserId = userData._id;
+    const userId = userData._id;
     
-    const deletedProfileRes = await fetch('/users/', {
+    const deletedProfileRes = await fetch('/user/', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({requestedUserId})
+      body: JSON.stringify({userId})
     });
 
     const deletedProfileData = await deletedProfileRes.json();

@@ -80,11 +80,11 @@ function UpdateProfile() {
 
   return (
     <div id="myUpdateProfilePage" className="container myProfilePage">      
-      <div className="mainProfileIcon" style={{background: `url("/Logo.png") center/cover`}} ></div>
+      <div className="mainProfileIcon" style={{background: `url(${ userData.profileImage }) center/cover`}} ></div>
 
       <div className="myProfileMainHeader">
-        <div className="myProfileUserName">SilvenLEAF SilvenLEAF</div>
-        <div className="myProfileTitle" >Fullstack Developer</div>
+        <div className="myProfileUserName"> { userData.username } </div>
+        <div className="myProfileTitle" >{ userData.title }</div>
         <div className="myProfileLocation red-text"> All fields are OPTIONAL </div>
       </div>
 
