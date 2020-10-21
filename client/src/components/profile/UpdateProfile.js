@@ -190,7 +190,7 @@ function UpdateProfile() {
               <i className="fa fa-picture-o"></i> Profile image URL
             </div>
             <div className="myProfileInfoAnswer">
-              <input type="text" placeholder="give a dropbox link" value={profileImage} onChange={ e=> setProfileImage(e.target.value) } />
+              <input type="text" placeholder="give a valid URL" value={profileImage} onChange={ e=> setProfileImage(e.target.value) } />
             </div>
           </div>
 
