@@ -102,7 +102,7 @@ function Contact() {
           <p>Wanna know more about me?</p>
           
           <p>
-            <a target="_blank" rel="noopener noreferrer" href="silvenleaf.github.io" className="myThemeColorText">SilvenLEAF.github.io</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://silvenleaf.github.io" className="myThemeColorText">SilvenLEAF.github.io</a>
           </p>
         </div>
 

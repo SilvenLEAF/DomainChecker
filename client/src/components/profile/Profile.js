@@ -124,7 +124,7 @@ function Profile() {
           </div>
           <div className="myProfileInfoAnswer">
           { userData.websiteLink ? (
-            <a href={ userData.websiteLink } target="_blank">
+            <a href={ (userData.websiteLink.search('http://') === -1) ? 'https://' + userData.websiteLink : userData.websiteLink } target="_blank" rel="noopener noreferrer" >
               { userData.websiteLink }
             </a>
           ) : (
