@@ -1,14 +1,17 @@
 import M from 'materialize-css'
-import '../../styles/Profile.scss'
+import '../../styles/profile/Profile.scss'
 
 
 import React, { useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import moment from 'moment'
+ 
+
+
 
 
 import { AuthContext } from '../../contexts/subContexts/AuthContext';
-
+import { Toast } from '../../helpers/MyAlerts'
 
 
 
@@ -18,7 +21,7 @@ function Profile() {
   }, [])
   
   
-  const { userData } = useContext(AuthContext);
+  const { userData, setUserData } = useContext(AuthContext);
   const history = useHistory();
 
   
@@ -26,8 +29,16 @@ function Profile() {
   const deleteProfile = async (e) =>{
     e.preventDefault();
 
-    const userId = userData._id;
+  
+  
+
+    Toast.fire({
+      icon: 'info',
+      title: 'Please wait...'
+    })
     
+    const userId = userData._id;
+  
     const deletedProfileRes = await fetch('/user/', {
       method: 'DELETE',
       headers: {
@@ -39,20 +50,27 @@ function Profile() {
     const deletedProfileData = await deletedProfileRes.json();
 
     console.log(deletedProfileData)
-    window.location.href = `/login`
+    
+    setTimeout(()=>{
+      history.push('/login')
+      setUserData(null);
+    }, 3000)
+    
   }
 
 
-  if(!userData) history.push('/login')
+  if(!userData) history.push('/login');
+  if(userData && !userData.isVerified) history.push('/verifyDoor');
 
   return (
-    <div className="container myProfilePage">      
+    <div className="container myProfilePage" >
       <div className="mainProfileIcon" style={{background: `url(${ userData.profileImage || "/Logo.png" }) center/cover`}} ></div>
 
       <div className="myProfileMainHeader">
         <div className="myProfileUserName">{ userData.username }</div>
-        <div className="myProfileTitle" >{ userData.title }</div>
-        <div className="myProfileLocation red-text"> { userData.location } </div>
+        <div className="myProfileTitle red-text" >LEVEL { Math.max(1, Math.floor(userData.score/1000)) }</div>
+        <div className="myProfileTitle green-text" >XP { userData.score }</div>
+        <div className="myProfileLocation">Task Completed { userData.taskCompleted } </div>
       </div>
 
 
@@ -140,7 +158,7 @@ function Profile() {
 
         <div>
           <div className="myProfileInfoTitle">
-            <i className="fa fa-twitter"></i> Connect on Twitter
+            <i className="fab fa-twitter"></i> Connect on Twitter
           </div>
           <div className="myProfileInfoAnswer">
           { userData.twitterHandle ? userData.twitterHandle : (
@@ -159,8 +177,8 @@ function Profile() {
       </p>
 
        <div className="myProfileBtnsHolder myBtnsHolder right-align">
-          <Link to="/updateProfile" className="btn myBtn waves-effect waves-light"><i className="fa fa-edit"></i> Update Account</Link>
-          <button className="btn myRedBtn waves-effect waves-light" onClick={ deleteProfile } ><i className="fa fa-trash"></i> Delete Account</button>
+          <Link to="/updateProfile" className="btn myBtn waves-effect waves-light myCornerless"><i className="fa fa-edit"></i> Update Account</Link>
+          <button className="btn myRedBtn waves-effect waves-light myCornerless" onClick={ deleteProfile } ><i className="fa fa-trash"></i> Delete Account</button>
         </div>
      </div>
 

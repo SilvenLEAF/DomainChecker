@@ -16,10 +16,16 @@ export const SignedInMobileLinks = ({ setUserData }) => {
   const history = useHistory();
 
 
-  const handleLogout = ()=>{
-    console.log('started log out')
+  const handleLogOut = async (e)=>{
+     
+    const response = await fetch('/logout');
+    const data = await response.json();
+
+    console.log(data);
+
+    setUserData(null)
+    history.push('/');
     
-    window.location.href = '/logout'
   }
 
 
@@ -31,7 +37,7 @@ export const SignedInMobileLinks = ({ setUserData }) => {
       <li><NavLink to="/allUsers" className="sidenav-close" ><i className="fa fa-users"></i>All Users</NavLink></li>
       <li><NavLink to="/contact" className="sidenav-close" ><i className="fa fa-envelope"></i>Contact Me</NavLink></li>
       
-      <li onClick={ handleLogout } ><NavLink to="/" className="sidenav-close" ><i className="fa fa-sign-out"></i>Log out</NavLink></li>
+      <li onClick={ handleLogOut } ><NavLink to="/" className="sidenav-close" ><i className="fas fa-sign-out-alt"></i>Log out</NavLink></li>
       <li><a target="_blank" rel="noopener noreferrer" href="https://silvenleaf.github.io" className="sidenav-close" ><i className="fa fa-info"></i>About Me</a></li>
     </>
   )
@@ -51,14 +57,22 @@ export const SignedInPCLinks = ({ setUserData }) => {
 
 
 
+
   const history = useHistory();
 
-  const handleLogout = ()=>{
-    setUserData({
-      user: undefined,
-    });
-    history.push('/')
+  const handleLogOut = async (e)=>{
+     
+    const response = await fetch('/logout');
+    const data = await response.json();
+
+    console.log(data);
+
+    setUserData(null)
+    history.push('/');
+    
   }
+
+
 
 
 
@@ -69,7 +83,7 @@ export const SignedInPCLinks = ({ setUserData }) => {
       <li><NavLink to="/allUsers" >All Users</NavLink></li>           
       <li><NavLink to="/contact">Contact Me</NavLink></li>           
       
-      <li onClick={ handleLogout } ><NavLink to="/" className="sidenav-close" >Log out</NavLink></li>
+      <li onClick={ handleLogOut } ><NavLink to="/" className="sidenav-close" >Log out</NavLink></li>
       <li><a target="_blank" rel="noopener noreferrer" href="https://silvenleaf.github.io" >About Me</a></li>
     </>
   )

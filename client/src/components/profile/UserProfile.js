@@ -1,10 +1,12 @@
 import M from 'materialize-css'
-import '../../styles/Profile.scss'
+import '../../styles/profile/Profile.scss'
 
 
 import React, { useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import moment from 'moment'
+ 
+ 
 
 
 import { AuthContext } from '../../contexts/subContexts/AuthContext';
@@ -29,16 +31,18 @@ function UserProfile(props) {
 
   
 
-  if(!userData) history.push('/login')
+  if(!userData) history.push('/login');
+  if(userData && !userData.isVerified) history.push('/verifyDoor');
 
   return (
-    <div className="container myProfilePage">      
+    <div className="container myProfilePage" >
       <div className="mainProfileIcon" style={{background: `url(${ item.profileImage || "/Logo.png" }) center/cover`}} ></div>
 
       <div className="myProfileMainHeader">
         <div className="myProfileUserName">{ item.username }</div>
-        <div className="myProfileTitle" >{ item.title }</div>
-        <div className="myProfileLocation red-text"> { item.location } </div>
+        <div className="myProfileTitle red-text" >LEVEL { Math.max(1, Math.floor(item.score/1000)) }</div>
+        <div className="myProfileTitle green-text" >XP { item.score }</div>
+        <div className="myProfileLocation">Task Completed { item.taskCompleted } </div>
       </div>
 
 
@@ -128,12 +132,23 @@ function UserProfile(props) {
 
         <div>
           <div className="myProfileInfoTitle">
-            <i className="fa fa-twitter"></i> Connect on Twitter
+            <i className="fab fa-twitter"></i> Connect on Twitter
           </div>
           <div className="myProfileInfoAnswer">
           { item.twitterHandle ? item.twitterHandle : (
               <span className="red-text">no info given</span>
             ) }
+          </div>
+        </div>
+
+
+
+        <div>
+          <div className="myProfileInfoTitle">
+            <i className="fa fa-info-circle"></i> Verified
+          </div>
+          <div className="myProfileInfoAnswer">
+          { item.isVerified ? `Verified account` : `Unverified account` }
           </div>
         </div>
 

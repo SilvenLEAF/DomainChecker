@@ -1,4 +1,4 @@
-@import '../variables';
+@import '../../variables';
 
 
 
@@ -140,7 +140,7 @@
     }
     .myOauthLinkedin {
       background-color:  #0e76a8 ; 
-      display: none;
+      
     }
     .myOauthGithub {
        background-color: #211F1F; 
@@ -155,6 +155,7 @@
     }
     .myOauthFacebook {
       background-color: #4267B2; 
+      display: none;
     }    
     
   }

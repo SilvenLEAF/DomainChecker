@@ -1,16 +1,25 @@
 import M from 'materialize-css'
-import '../../styles/AuthDoor.scss'
-import '../../styles/AuthForm.scss'
+import '../../../styles/auth/AuthDoor.scss'
+import '../../../styles/auth/AuthForm.scss'
 
 
 import React, { useEffect, useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { AuthContext } from '../../contexts/subContexts/AuthContext'
+ 
+ 
+
+
+
+import { AuthContext } from '../../../contexts/subContexts/AuthContext'
+import { Toast } from '../../../helpers/MyAlerts'
+
+
+
 
 function SignUpForm() {
   useEffect(()=>{
     M.AutoInit();
-  })
+  }, [])
 
 
 
@@ -31,93 +40,119 @@ function SignUpForm() {
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    console.log('started signup')
-
-    const newUser = {};
-    if(username) newUser.username = username;
-    if(email) newUser.email = email;    
-    if(password !== confirmPassword) return setError(`Type the password twice for confirmation`);    
-    if(password) newUser.password = password;
-
-
-
-
-
     
-    const femaleIcons = [
-      'userFemaleBlue',
-      'userFemaleGreen',
-      'userFemaleOrange',
-      'userFemalePink',
-      'userFemalePurple',
-      'userFemaleRed',
-      'userFemaleTheme',
-      'userFemaleYellow',
-    ]
-    
-    const maleIcons = [
-      'userMaleBlue',
-      'userMaleGreen',
-      'userMaleOrange',
-      'userMalePink',
-      'userMalePurple',
-      'userMaleRed',
-      'userMaleTheme',
-      'userMaleYellow',
-    ]
+    try {
+      Toast.fire({
+        icon: 'info',
+        title: 'Please wait...'
+      })
+  
+      const newUser = {};
+      if(username) newUser.username = username;
+      if(email) newUser.email = email.toLowerCase();    
+      if(password !== confirmPassword) return setError(`Type same password twice`);    
+      if(password) newUser.password = password;
+  
+  
+  
+  
+  
+      
+      const femaleIcons = [
+        'userFemaleBlue',
+        'userFemaleGreen',
+        'userFemaleOrange',
+        'userFemalePink',
+        'userFemalePurple',
+        'userFemaleRed',
+        'userFemaleTheme',
+        'userFemaleYellow',
+      ]
+      
+      const maleIcons = [
+        'userMaleBlue',
+        'userMaleGreen',
+        'userMaleOrange',
+        'userMalePink',
+        'userMalePurple',
+        'userMaleRed',
+        'userMaleTheme',
+        'userMaleYellow',
+      ]
+  
+      const n = Math.floor(Math.random() * maleIcons.length);
+  
+      newUser.profileImage = `/images/users/${ (gender === 'male') ?  maleIcons[n] : femaleIcons[n] }.png`
+  
+  
+  
+  
+  
+  
+  
+  
+      
+  
+  
+      const signupRes = await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUser)
+      });
+      const signupData = await signupRes.json();
+      if(signupData.error) setError(signupData.msg);
+      
+      console.log(signupData)
+  
+  
+      
+      
+      const loggedInUserRes = await fetch('/user');
+      const loggedInUserData = await loggedInUserRes.json();
+      if(loggedInUserData.error) setError(loggedInUserData.msg);
+  
+      console.log(loggedInUserData); 
+      
+      if(loggedInUserData.user){
+        
+        setTimeout(()=>{
+          setUserData(loggedInUserData.user);
+          history.push('/');
+        }, 3000)
+      }
+  
+    } catch (err) {
+      console.log(err);
 
-    const n = Math.floor(Math.random() * maleIcons.length);
-
-    newUser.profileImage = `/images/users/${ (gender === 'male') ?  maleIcons[n] : femaleIcons[n] }.png`
-
-
-
-
-
-
-
-
-    
-
-
-    const signupRes = await fetch('/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newUser)
-    });
-    const signupData = await signupRes.json();
-
-    console.log(signupData)
-
-
-    if(signupData.msg) return setError(signupData.msg);
-
-    setUserData(signupData)
-
-
-
-    const loggedInUserRes = await fetch('/user');
-    const loggedInUserData = await loggedInUserRes.json();
-
-    console.log(loggedInUserData); 
-    
-    if(loggedInUserData.user){
-      setUserData(loggedInUserData.user);
+      if(err.error) setError(err.msg);
     }
 
 
-    history.push('/');
-
   }
+
+
+
+
+
+  
+  useEffect(()=>{
+    if(error){
+      Toast.fire({
+        icon: 'error',
+        title: error
+      })
+    }
+  }, [error])
+
 
 
   if(userData) history.push('/')
 
   return (
     <div className="container myAuthForm" >
-      <div className="myAuthAppName">Domain Checker</div>
+      <div className="myAuthAppName">GamifyHouseWorks</div>
       <div className="myAuthTitle">Sign up a new account</div>
 
       <p className="center-align red-text"> { error } </p>

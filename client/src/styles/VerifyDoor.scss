@@ -1,0 +1,24 @@
+@import '../variables.scss';
+
+.myVerifyDoorPage {
+
+  margin: 50px auto;    
+  padding:30px;
+  padding-top: 20px;
+
+  max-width: 500px;
+
+  box-shadow: $awesomeShadow;
+  background-color: #fff;
+
+  @include mQ(800px){
+    margin: 40px auto;    
+    margin-bottom: 0;
+  }
+
+  
+
+  .pageTitle {
+    margin: 0;
+  }
+}

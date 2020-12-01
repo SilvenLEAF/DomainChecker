@@ -1,12 +1,30 @@
+import M from 'materialize-css'
+import '../../styles/Form.scss';
+import '../../styles/ActionPage.scss';
+
+
+
+import React, { useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+ 
+ 
+import { Toast } from '../../helpers/MyAlerts';
+
+
 
 function ActionPage() {
   useEffect(()=>{
     M.AutoInit();
-  }, [])
+  }, []);
+
+  const history = useHistory();
 
 
   const [domainName, setDomainName] = useState('')
   const [ipAddress, setIpAddress] = useState('');
+  
+  const [error, setError] = useState('');
+
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
@@ -25,6 +43,20 @@ function ActionPage() {
 
   }
   
+
+
+  useEffect(()=>{
+    if(error){
+      Toast.fire({
+        icon: 'error',
+        title: error
+      })
+    }
+  }, [error])
+
+
+
+  
   return (
     <div className="container">
       <form className="myDefaultForm" onSubmit={ handleSubmit } >
@@ -32,7 +64,7 @@ function ActionPage() {
           <label htmlFor="domainName">Your Domain Name <span className="red-text">(Required)</span></label>
           <div>
             <i className="myPrefix material-icons">memory</i>
-            <input type="text" value={ domainName } onChange={ e=> setDomainName(e.target.value) } required />
+            <input type="text" value={ domainName } onChange={ e=> setDomainName(e.target.value) } required placeholder="e.g. google.com" />
           </div>
         </div>
         

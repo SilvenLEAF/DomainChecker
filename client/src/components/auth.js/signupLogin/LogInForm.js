@@ -1,17 +1,24 @@
 import M from 'materialize-css'
-import '../../styles/AuthDoor.scss'
-import '../../styles/AuthForm.scss'
+import '../../../styles/auth/AuthDoor.scss'
+import '../../../styles/auth/AuthForm.scss'
 
 
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { AuthContext } from '../../contexts/subContexts/AuthContext'
+ 
+ 
+
+
+import { AuthContext } from '../../../contexts/subContexts/AuthContext'
+import { Toast } from '../../../helpers/MyAlerts'
+
+
 
 
 function LogInForm() {
   useEffect(()=>{
     M.AutoInit();
-  })
+  }, [])
   
   
   const { userData, setUserData } = useContext(AuthContext);
@@ -25,56 +32,86 @@ function LogInForm() {
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    console.log('started login')
-
-    const oldUser = {};
-    if(email) oldUser.email = email;
-    if(password) oldUser.password = password;
     
-    
+    try {
+      
+      Toast.fire({
+        icon: 'info',
+        title: 'Please wait...'
+      })
 
-    
+      const oldUser = {};
+      if(email) oldUser.email = email.toLowerCase();
+      if(password) oldUser.password = password;
+      
+      
 
-
-    const loginRes = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(oldUser)
-    });
-    const loginData = await loginRes.json();
-
-    console.log(loginData)
-
-
-    if(loginData.msg) return setError(loginData.msg);
-
-    setUserData(loginData)
+      
 
 
+      const loginRes = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(oldUser)
+      });
+      const loginData = await loginRes.json();
+      if(loginData.error) setError(loginData.msg);
 
-    const loggedInUserRes = await fetch('/user');
-    const loggedInUserData = await loggedInUserRes.json();
+      console.log(loginData);
 
-    console.log(loggedInUserData); 
-    
-    if(loggedInUserData.user){
-      setUserData(loggedInUserData.user);
+
+      
+      const loggedInUserRes = await fetch('/user');
+      const loggedInUserData = await loggedInUserRes.json();
+      if(loggedInUserData.error) setError(loggedInUserData.msg);
+      console.log(loggedInUserData); 
+      
+      if(loggedInUserData.user){
+        
+        setTimeout(()=>{
+          setUserData(loggedInUserData.user);
+          history.push('/');
+        }, 3000)
+      } 
+      
+    } catch (err) {
+      console.log(err);
+
+      if(err.error){
+        setError(err.msg);
+      }
     }
-    history.push('/');
 
   }
+
+
+
+
+  
+  useEffect(()=>{
+    if(error){
+      Toast.fire({
+        icon: 'error',
+        title: error
+      })
+    }
+  }, [error])
+
 
 
   if(userData) history.push('/');
 
 
   return (
-    <div className="container myAuthForm" >
-      <div className="myAuthAppName">Domain Checker</div>
+    <div className="container myAuthForm"
+      
+
+    >
+      <div className="myAuthAppName">GamifyHouseWorks</div>
       <div className="myAuthTitle">Log in to your account</div>
-      <p className="center-align red-text"> { error } </p>
+      
 
 
       <form onSubmit={ handleSubmit } >
@@ -104,14 +141,14 @@ function LogInForm() {
         </div>
 
 
-
+ 
         <div className="myAuthFormFooter">
           <p>
-            Forgot password? <Link to="/signup">Reset password</Link>
+            Forgot password? <Link to="/forgotten">Reset password</Link>
           </p>
           <p>
             Need an account? <Link to="/signup">Sign up</Link>
-          </p>
+          </p> 
         </div>
 
 

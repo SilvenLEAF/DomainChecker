@@ -1,13 +1,16 @@
 import M from 'materialize-css'
-import '../../styles/AuthDoor.scss'
+import '../../../styles/auth/AuthDoor.scss'
 
 
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+ 
+ 
 
 
-import { AuthContext } from '../../contexts/subContexts/AuthContext'
 
+import { AuthContext } from '../../../contexts/subContexts/AuthContext'
+import { Toast } from '../../../helpers/MyAlerts'
 
 
 
@@ -17,7 +20,7 @@ import { AuthContext } from '../../contexts/subContexts/AuthContext'
 function Signup() {
   useEffect(()=>{
     M.AutoInit();
-  })
+  }, [])
 
 
 
@@ -25,48 +28,63 @@ function Signup() {
   const { userData, setUserData } = useContext(AuthContext);
   const history = useHistory();
 
+  const [error, setError] = useState('')
 
 
   const demoLogin = async (e)=>{
     e.preventDefault();
-    console.log('started demo login')
 
-    const demoUser = { email: `demo@gmail.com`, password: `123456Aa` };
+    try {
+      
+      Toast.fire({
+        icon: 'info',
+        title: 'Please wait...'
+      })
+      
+  
+      const demoUser = { email: `demo@gmail.com`, password: `0123456789` };
+      
+      
+      
+  
+      
+  
+  
+      const loginRes = await fetch('/demo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(demoUser)
+      });
+      
+      const loginData = await loginRes.json();
+      if(loginData.error) setError(loginData.msg);
     
-    
-    
+  
+      
+  
+  
+      const loggedInUserRes = await fetch('/user');
+      const loggedInUserData = await loggedInUserRes.json();
+      if(loggedInUserData.error) setError(loggedInUserData.msg);
+  
 
-    
+      console.log(loggedInUserData); 
+      
+      if(loggedInUserData.user){
+        
+        setTimeout(()=>{
+          setUserData(loggedInUserData.user);
+          history.push('/');
+        }, 3000)
+      }
+  
+    } catch (err) {
+      console.log(err);
 
-
-    const loginRes = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(demoUser)
-    });
-    const loginData = await loginRes.json();
-
-    console.log(loginData)
-
-
-
-
-    setUserData(loginData)
-
-
-
-    const loggedInUserRes = await fetch('/user');
-    const loggedInUserData = await loggedInUserRes.json();
-
-    console.log(loggedInUserData); 
-    
-    if(loggedInUserData.user){
-      setUserData(loggedInUserData.user);
+      if(err.error) setError(err.msg);
     }
-    history.push('/');
-
   }
 
 
@@ -85,8 +103,11 @@ function Signup() {
 
 
   return (
-    <div className="container myAuthDoor" >
-      <div className="myAuthAppName">Domain Checker</div>
+    <div className="container myAuthDoor"
+      
+
+    >
+      <div className="myAuthAppName">GamifyHouseWorks</div>
       <div className="myAuthTitle">Sign up a new account</div>
 
 
@@ -130,9 +151,9 @@ function Signup() {
           
           
           
-          <div className="myOauthBtn myOauthLinkedin">
+          <a href="/auth/linkedin" className="myOauthBtn myOauthLinkedin">
             <i className="fa fa-linkedin"></i> Continue with LinkedIN
-          </div>
+          </a>
           
           
           
@@ -143,9 +164,9 @@ function Signup() {
           
           
           
-          <div className="myOauthBtn myOauthTwitter">
+          <a href="/auth/twitter" className="myOauthBtn myOauthTwitter">
             <i className="fa fa-twitter"></i> Continue with Twitter
-          </div>
+          </a>
           
           
           

@@ -40,7 +40,8 @@ body{
   font-family: Roboto, sans-serif;
   font-size: 14px;  
 
-  background-color: $bodyBG;
+  background-color: $bodyBG;  
+  
 }
 
 
@@ -61,7 +62,7 @@ body{
 .pageTitle {  
   margin: 25px 0px;
 
-  font-size: 270%;
+  // font-size: 270%;
   font-weight: 800;
   font-family: Dosis, sans-serif;
 }
@@ -85,11 +86,11 @@ body{
   font-weight: 500;
 
   .myProfileNavIcon{
-    background-color: $bodyBG;
-    color: $themeColor;
-    font-family: Dosis;
-    font-weight: 700;
-    font-size: 170%;
+    background-color: $bodyBG !important;
+    color: $themeColor !important;
+    font-family: Dosis !important;
+    font-weight: 700 !important;
+    font-size: 170% !important;
     
   }
 
@@ -98,7 +99,7 @@ body{
     font-family: Aladin, Dosis, sans-serif;
 
     @include mQ(400px){
-      font-size: 220%;
+      font-size: 205%;
     }
   }
   
@@ -142,8 +143,13 @@ ul.sidenav {
 ------------------------------------ */
 .sidenav-trigger{
   position: relative;
-  top: 10px;
+  // top: 10px;
   cursor: pointer;
+  color:#fff;
+  i{
+    margin: 0;
+    // font-size: 200%;
+  }
 }
 .sidenav-trigger > div {
   width: 30px;    
@@ -152,7 +158,6 @@ ul.sidenav {
   background-color: #fff;
   border-radius: 30px;
 }
-
 
 
 
@@ -390,6 +395,37 @@ input[type=text]:focus,  input[type=number]:focus,  input[type=email]:focus,  in
 
  
 /* --------------------------------------
+.             BUTTONS HOLDER
+-------------------------------------- */
+.myBtnsHolder.left-align {
+  margin: 0;
+  margin-top: 20px;
+  > .btn {
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+}
+
+.myBtnsHolder.right-align {
+  margin: 0;
+  margin-top: 20px;
+  > .btn {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}
+
+.myBtnsHolder.center-align {
+  margin: 0;
+  margin-top: 20px;
+  > .btn {
+    margin-top: 0px;
+  }
+}
+  
+  
+  
+  /* --------------------------------------
 .             DEFAULT BUTTONS
 -------------------------------------- */
 .btn.myBtn {
@@ -409,6 +445,29 @@ input[type=text]:focus,  input[type=number]:focus,  input[type=email]:focus,  in
 }
 
 
+.myCornerless {
+  border-radius: 30px !important;
+}
+
+
+
+.btn.mySecondaryBtn {
+  color: #333 !important;
+  font-weight: 500;
+  background-color: $secondaryBtnColor !important;
+  &:visited {
+    background-color: $secondaryBtnColor !important;
+  }
+  &:active {
+    background-color: $secondaryBtnColor !important;
+  }
+  &:focus {
+    background-color: $secondaryBtnColor !important;
+  }
+  &:hover {
+    background-color: darken($secondaryBtnColor, 10) !important;
+  }
+}
 
 
 

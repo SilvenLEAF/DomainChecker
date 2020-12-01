@@ -1,9 +1,11 @@
 import M from 'materialize-css'
-import '../../styles/UserList.scss'
+import '../../styles/profile/UserList.scss'
 
 import React, { useEffect, useContext, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { usePaginatedQuery } from 'react-query'
+ 
+ 
 
 
 
@@ -15,6 +17,8 @@ import { AllUserContext } from '../../contexts/subContexts/AllUserContext'
 
 
 import UserListItem from './UserListItem'
+import MyLoader from '../../helpers/MyLoader';
+
 
 
 
@@ -56,10 +60,15 @@ function UserList() {
 
 
 
-  if(!userData) history.push('/login')
+  if(!userData) history.push('/login');
+  if(userData && !userData.isVerified) history.push('/verifyDoor');
 
-  return (
-    <div className="container myUserListPage">
+  return !allUsers[0] ?  (
+    <div className="myLoaderPageHolder">
+      <MyLoader/>
+    </div>
+  ) : (
+    <div className="container myUserListPage" >      
       <h6 className="blue-text">All users</h6>
 
 

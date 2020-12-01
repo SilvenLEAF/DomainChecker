@@ -1,13 +1,17 @@
 import M from 'materialize-css'
-import '../../styles/Profile.scss'
-import '../../styles/UpdateProfile.scss'
+import '../../styles/profile/Profile.scss'
+import '../../styles/profile/UpdateProfile.scss'
 
 
 import React, { useEffect, useContext, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
+ 
+ 
+
 
 
 import { AuthContext } from '../../contexts/subContexts/AuthContext';
+import { Toast } from '../../helpers/MyAlerts'
 
 
 
@@ -27,7 +31,7 @@ function UpdateProfile() {
 
   const [title, setTitle] = useState('')
   const [location, setLocation] = useState('');
-  const [about, setAbout] = useState('')
+  const [about, setAbout] = useState(userData.about)
 
   const [careerStatus, setCareerStatus] = useState('');
   const [workingAt, setWorkingAt] = useState('');
@@ -41,7 +45,11 @@ function UpdateProfile() {
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
-
+    Toast.fire({
+      icon: 'info',
+      title: 'Please wait...'
+    })
+    
     const updateObj = {};
     updateObj.userId = userData._id;
 
@@ -58,34 +66,55 @@ function UpdateProfile() {
     if(twitterHandle) updateObj.twitterHandle = twitterHandle;
     
 
-    console.log('update started');
+    
 
 
-    const res = await fetch('/user', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(updateObj)
-    })
+    if(userData.role === 'demo'){
+      setUserData({
+        ...userData,
+        ...updateObj
+      })
 
 
-    const data = await res.json();
-    setUserData(data);
-    history.push('/profile')
+      setTimeout(()=>{        
+        history.push('/profile')
+      }, 3000)
+
+    } else {
+      
+      const res = await fetch('/user', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateObj)
+      })
+  
+  
+      const data = await res.json();
+      
+      setTimeout(()=>{
+        setUserData(data);
+        history.push('/profile')
+      }, 3000)
+    }
+
+
   }
   
 
-  if(!userData) history.push('/login')
+  if(!userData) history.push('/login');
+  if(userData && !userData.isVerified) history.push('/verifyDoor');
 
   return (
-    <div id="myUpdateProfilePage" className="container myProfilePage">      
+    <div id="myUpdateProfilePage" className="container myProfilePage" >      
       <div className="mainProfileIcon" style={{background: `url(${ userData.profileImage }) center/cover`}} ></div>
 
       <div className="myProfileMainHeader">
-        <div className="myProfileUserName"> { userData.username } </div>
-        <div className="myProfileTitle" >{ userData.title }</div>
-        <div className="myProfileLocation red-text"> All fields are OPTIONAL </div>
+        <div className="myProfileUserName">{ userData.username }</div>
+        <div className="myProfileTitle red-text" >LEVEL { Math.max(1, Math.floor(userData.score/1000)) }</div>
+        <div className="myProfileTitle green-text" >XP { userData.score }</div>
+        <div className="myProfileLocation">Task Completed { userData.taskCompleted } </div>
       </div>
 
 
@@ -96,7 +125,7 @@ function UpdateProfile() {
         <div className="myProfileInfoHolder col s12 m6">
           <div>
             <div className="myProfileInfoTitle">
-              <i className="fa fa-address-card-o"></i> Username 
+              <i className="far fa-address-card"></i> Username 
             </div>
             <div className="myProfileInfoAnswer">
               <input type="text" placeholder={ userData.username} value={username} onChange={ e=> setUsername(e.target.value) } />
@@ -174,7 +203,7 @@ function UpdateProfile() {
 
           <div>
             <div className="myProfileInfoTitle">
-              <i className="fa fa-twitter"></i> Connect on Twitter
+              <i className="fab fa-twitter"></i> Connect on Twitter
             </div>
             <div className="myProfileInfoAnswer">
               <input type="text" placeholder={ userData.twitterHandle} value={twitterHandle} onChange={ e=> setTwitterHandle(e.target.value) } />
@@ -206,8 +235,8 @@ function UpdateProfile() {
             </div>
 
             <div className="myBtnsHolder right-align">
-              <button className="btn myBtn waves-effect waves-light"><i className="fa fa-edit"></i> Update</button>
-              <Link to="/profile" className="btn myRedBtn waves-effect waves-light"><i className="fa fa-remove"></i> Cancel</Link>
+              <button className="btn myBtn waves-effect waves-light myCornerless"><i className="fa fa-edit"></i> Update</button>
+              <Link to="/profile" className="btn myRedBtn waves-effect waves-light myCornerless"><i className="fa fa-remove"></i> Cancel</Link>
             </div>
         </div>
 

@@ -1,13 +1,18 @@
 import React from 'react'
-import AllUserProvider from './subContexts/AllUserContext'
+import AllUserContextProvider from './subContexts/AllUserContext'
+
+
+
 
 function RootContext({ children }) {
   return (
     <>
       
-      <AllUserProvider>
+      <AllUserContextProvider>
+        
         { children }
-      </AllUserProvider>
+        
+      </AllUserContextProvider>
     
     </>
   )

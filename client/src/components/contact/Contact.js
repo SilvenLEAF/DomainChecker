@@ -4,7 +4,9 @@ import './../../styles/Form.scss'
 
 
 import React, { useEffect, useState } from 'react'
-import swal from 'sweetalert';
+ 
+ 
+import { Toast } from '../../helpers/MyAlerts';
 
 
 
@@ -17,8 +19,8 @@ import swal from 'sweetalert';
 
 function Contact() {
   useEffect(() => {
-    M.AutoInit();
-  })
+    M.AutoInit();    
+  }, [])
 
 
 
@@ -28,31 +30,72 @@ function Contact() {
   
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [error, setError] = useState('');
 
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = async (e)=>{
     e.preventDefault();
   
-  
-  
+    try {
+      Toast.fire({
+        icon: 'info',
+        title: 'Please wait...'
+      })
+
+      const response = await fetch('/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, content })
+      })
+    
+      const data = await response.json();
+      
+      console.log(data)
+      
+      if(data.error){
+        setError(data.msg);
+      } else {
+        Toast.fire({
+          icon: 'success',
+          title: 'Your message is sent.'
+        })
+      }
+
+     
+      
+    } catch (err) {
+     console.log(err);
+
+     if(err.error) setError(err.msg);
+    }
 
 
 
     setTitle('');
     setContent('')
-    swal("Sent", "Your message is sent. Thanks for contacting!","success");    
+    
   }
 
 
 
 
 
+  useEffect(()=>{
+    if(error){
+      Toast.fire({
+        icon: 'error',
+        title: error
+      })
+    }
+  }, [error])
 
 
 
 
   return (
-    <div className= "container">
+    <div className= "container" >
 
 
 
@@ -67,7 +110,7 @@ function Contact() {
         <div className="myInputHolder">            
           <label htmlFor="title">Title <span className="red-text">(Required)</span></label>
           <div>
-            <i className="myPrefix fa fa-address-card-o"></i>
+            <i className="myPrefix far fa-address-card"></i>
             <input type="text" name="contactTitle" value={ title } onChange={ e=> setTitle(e.target.value) } required />
           </div>
         </div>

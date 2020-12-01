@@ -40,9 +40,7 @@ function Navbar() {
 
         <Link to= "/" className= "brand-logo">DomainChecker</Link>
         <div className="sidenav-trigger hide-on-large-only" data-target= "mobilenav" id="myHam">
-            <div></div>   
-            <div></div>
-            <div></div>
+          <i className="fas fa-hamburger"></i>
         </div>
 
 
