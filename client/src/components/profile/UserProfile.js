@@ -39,10 +39,9 @@ function UserProfile(props) {
       <div className="mainProfileIcon" style={{background: `url(${ item.profileImage || "/Logo.png" }) center/cover`}} ></div>
 
       <div className="myProfileMainHeader">
-        <div className="myProfileUserName">{ item.username }</div>
-        <div className="myProfileTitle red-text" >LEVEL { Math.max(1, Math.floor(item.score/1000)) }</div>
-        <div className="myProfileTitle green-text" >XP { item.score }</div>
-        <div className="myProfileLocation">Task Completed { item.taskCompleted } </div>
+        <div className="myProfileUserName">{ item.username }</div>        
+        <div className="myProfileTitle myThemeColorText" >{ item.title }</div>
+        <div className="myProfileLocation red-text">{ item.location } </div>
       </div>
 
 

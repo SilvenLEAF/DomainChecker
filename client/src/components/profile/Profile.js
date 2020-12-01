@@ -67,10 +67,9 @@ function Profile() {
       <div className="mainProfileIcon" style={{background: `url(${ userData.profileImage || "/Logo.png" }) center/cover`}} ></div>
 
       <div className="myProfileMainHeader">
-        <div className="myProfileUserName">{ userData.username }</div>
-        <div className="myProfileTitle red-text" >LEVEL { Math.max(1, Math.floor(userData.score/1000)) }</div>
-        <div className="myProfileTitle green-text" >XP { userData.score }</div>
-        <div className="myProfileLocation">Task Completed { userData.taskCompleted } </div>
+        <div className="myProfileUserName">{ userData.username }</div>        
+        <div className="myProfileTitle myThemeColorText" >{ userData.title }</div>
+        <div className="myProfileLocation red-text">{ userData.location } </div>
       </div>
 
 
