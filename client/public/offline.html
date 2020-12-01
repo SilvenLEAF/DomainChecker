@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Offline</title>
   <style>
- 
+  
+  :root {
+    --themeColor: #2196f3;
+  }
   body {
     margin: 0;
     background:#f4f4f4;
@@ -23,7 +26,7 @@
     font-style: italic;
   }
   #myGameTitle{
-    color: #2196f3;
+    color: var(--themeColor);
     font-size: 270%;
     text-align: center;
     text-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
@@ -57,7 +60,7 @@
     font-size: 90%;
     
     box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
-    background-color: #2196f3;
+    background-color: var(--themeColor);
     
   }
   .upBtn {
@@ -73,7 +76,7 @@
 
 
   canvas {
-    border:3px solid #2196f3;
+    border:3px solid var(--themeColor);
     box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
     background:#efe;
   }

@@ -10,13 +10,19 @@ const bcrypt = require('bcryptjs');
 
 
 
-module.exports = SignupStategy = new Strategy(
+
+
+
+
+module.exports = SignupStrategy = new Strategy(
   {
-    // by default Local Strategy uses username and password, we are overridding username wth email
+    // overriding the default username with email
     usernameField: 'email',
     passwordField: 'password',
-    passReqToCallback: true
+    passReqToCallback: true,
   },
+
+
 
 
   (req, email, password, done)=>{
@@ -24,29 +30,34 @@ module.exports = SignupStategy = new Strategy(
     console.log(req.body);
 
 
-    User.findOne({ 'local.email': email }, (err, user)=>{
 
-      // if there are any errors, return the error
+    User.findOne({ 'local.email': email }, (err, user)=>{
+      
+
+      // if there is an error
       if(err) return done(err);
 
 
 
-      // if the user already have and account
-      if(user) return done({ msg: `This email is already taken` }, null);
+
+      // if the user already have an account
+      if(user) return done({ msg: `This email is already taken`, error: true }, null);
 
 
 
 
-      // if the user does not exist on our database, create a new account
+      // if not, create a new account
       User.create({
         'local.email': email,
         'local.password': bcrypt.hashSync(password, bcrypt.genSaltSync()),
+
+
         createdAt: new Date(),
         username,
         profileImage,
-
-      }).then(newUser=> done(null, newUser))
-
+        
+      }).then(newUser=> done(null, newUser)); // Send it onto the Cookie-fyer. (IN REACT) send the  (err, user, info) onto the passport middleware used on the auth route
+      
     })
   }
 )

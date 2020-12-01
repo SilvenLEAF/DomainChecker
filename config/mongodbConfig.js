@@ -4,15 +4,20 @@ const mongoose = require('mongoose');
 
 
 
-mongoose.connect(process.env.MONGODB_STRING, 
+
+
+mongoose.connect(process.env.MONGODB_STRING,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
   },
-  (err)=>{
+
+
+
+  (err) =>{
     if(err) throw err;
-    console.log(`connected to MongoDB`)
+    console.log('connected to MongoDB');
   }
 )

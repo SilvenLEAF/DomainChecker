@@ -45,8 +45,23 @@ const GithubSchema = new mongoose.Schema({
 
 
 
-const FacebookSchema = new mongoose.Schema({
-  facebookId: String,
+const LinkedinSchema = new mongoose.Schema({
+  linkedinId: String,
+  email: String,
+  username: String,
+  profileImage: String,
+});
+
+
+
+
+
+
+
+
+const TwitterSchema = new mongoose.Schema({
+  twitterId: String,
+  
   username: String,
   profileImage: String,
 });
@@ -59,11 +74,20 @@ const FacebookSchema = new mongoose.Schema({
 
 
 
-
-
 const LocalSchema = new mongoose.Schema({
   email: String,
   password: String,
+  
+    
+  resetToken: String,
+  resetTokenExpires: Date,
+  
+  
+  verificationToken: String,
+  verificationTokenExpires: Date,
+  
+  
+  
   username: String,
   profileImage: String,
 })
@@ -89,7 +113,10 @@ const LocalSchema = new mongoose.Schema({
 const UserSchema = new mongoose.Schema({
   google: GoogleSchema,
   github: GithubSchema,
-  facebook: FacebookSchema,
+  linkedin: LinkedinSchema,
+
+  twitter: TwitterSchema,
+
   
 
   local: LocalSchema,
@@ -100,6 +127,18 @@ const UserSchema = new mongoose.Schema({
   username: String,
   profileImage: String,
   createdAt: String,
+  role: {
+    type: String,
+    default: 'user',
+  },
+  isVerified: {
+    type: Boolean,
+    default: false
+  },
+  email: String,
+
+
+
 
 
   about: {
@@ -115,7 +154,7 @@ const UserSchema = new mongoose.Schema({
   },
   location: {
     type: String,
-    default: `Somewhere on Earth`,
+    default: `Somewhere on Earth`, 
   },
   careerStatus: String,
   workingAt: String,

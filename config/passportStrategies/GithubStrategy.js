@@ -37,7 +37,10 @@ module.exports = GithubStrategy = new Strategy(
       User.create({
         username: profile.displayName,
         profileImage: profile.photos[0].value,
+        
         createdAt: new Date(),
+        isVerified: true,
+        email: profile.emails[0].value,
 
         'github.githubId': profile.id,
         'github.email': profile.emails[0].value,

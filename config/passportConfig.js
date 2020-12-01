@@ -4,28 +4,25 @@ const User = require('../models/User');
 
 
 
+
 const LoginStrategy = require('./passportStrategies/LoginStrategy');
+const DemoStrategy = require('./passportStrategies/DemoStrategy');
 const SignupStrategy = require('./passportStrategies/SignupStrategy');
 
 
 
-const FacebookStrategy = require('./passportStrategies/FacebookStrategy');
 const GithubStrategy = require('./passportStrategies/GithubStrategy');
 const GoogleStrategy = require('./passportStrategies/GoogleStrategy');
+const LinkedinStrategy = require('./passportStrategies/LinkedinStrategy');
+//  const TwitterStrategy = require('./passportStrategies/TwitterStrategy');
 
 
 
 
 
-
-
-
-
-
-
-/* -----------------------------------
-.      SERIALIZE AND DESERIALIZE
------------------------------------ */
+/* ------------------------------------
+.     SERIALIZE AND DESERIALIZE
+------------------------------------ */
 passport.serializeUser((user, done)=>{
   done(null, user.id);
 });
@@ -41,13 +38,28 @@ passport.deserializeUser((id, done)=>{
 
 
 
-/* -----------------------------------
-.             STRATEGIES
------------------------------------ */
+
+
+
+
+
+
+
+
+/* ------------------------------------
+.               STRATEGIES
+------------------------------------ */
 passport.use('local-signup', SignupStrategy);
 passport.use('local-login', LoginStrategy);
+passport.use('demo', DemoStrategy)
+
 
 
 passport.use(GoogleStrategy);
 passport.use(GithubStrategy);
-passport.use(FacebookStrategy);
+passport.use(LinkedinStrategy);
+
+
+
+
+// passport.use(TwitterStrategy);

@@ -35,7 +35,10 @@ module.exports = GoogleStrategy = new Strategy(
       User.create({
         username: profile.displayName,
         profileImage: profile.photos[0].value,
+        
         createdAt: new Date(),
+        isVerified: true,
+        email: profile.emails[0].value,
 
         'google.googleId': profile.id,
         'google.email': profile.emails[0].value,
