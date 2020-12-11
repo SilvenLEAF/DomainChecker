@@ -4,6 +4,7 @@
   "description": "Isn't is really frustrating to come up with the perfect name for your website only to find out that the domain name is not available? Not anymore! Check if the domain has already been taken with just a simple click.",
   "main": "app.js",
   "scripts": {
+    "devStart": "nodemon app.js",
     "start": "node app.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
