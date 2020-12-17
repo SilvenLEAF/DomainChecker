@@ -8,9 +8,19 @@
 /* -----------------------------
 .          SPECIAL
 ----------------------------- */
-$redColor: #f00;
+$pureRedColor: #f00;
+
+$redColor: #f44336;
+$greenColor: #4caf50;
 $blueColor: #2196f3;
-$sweetPink: #ff0aa7;
+
+$purpleColor: #9c27b0;
+$orangeColor: #ff9800;
+$yellowColor: #FFEB3B;
+$brownColor: #795548;
+
+
+$sweetPinkColor: #ff0aa7;
 $secondaryBtnColor: #f1f2f4;
 
 
@@ -24,7 +34,9 @@ $awesomeShadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
 /* -----------------------------
 .          SETTINGS
 ----------------------------- */
-$themeColor: $blueColor;
+$themeColor: $greenColor; 
+// $themeColor: $blueColor; 
+
 $bodyBG: #f7f8fa;
 
 // auth door
